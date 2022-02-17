@@ -50,7 +50,7 @@
 #![warn(missing_docs)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-pub use libsqlite3_sys as ffi;
+pub use libsqlite3_sys_wasi as ffi;
 
 use std::cell::RefCell;
 use std::convert;
