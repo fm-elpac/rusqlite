@@ -34,44 +34,44 @@ members = ["libsqlite3-sys"]
 [features]
 load_extension = []
 # hot-backup interface: 3.6.11 (2009-02-18)
-backup = ["libsqlite3-sys-wasi/min_sqlite_version_3_6_23"]
+backup = ["libsqlite3-sys/min_sqlite_version_3_6_23"]
 # sqlite3_blob_reopen: 3.7.4
-blob = ["libsqlite3-sys-wasi/min_sqlite_version_3_7_7"]
+blob = ["libsqlite3-sys/min_sqlite_version_3_7_7"]
 collation = []
 # sqlite3_create_function_v2: 3.7.3 (2010-10-08)
-functions = ["libsqlite3-sys-wasi/min_sqlite_version_3_7_7"]
+functions = ["libsqlite3-sys/min_sqlite_version_3_7_7"]
 # sqlite3_log: 3.6.23 (2010-03-09)
-trace = ["libsqlite3-sys-wasi/min_sqlite_version_3_6_23"]
-bundled = ["libsqlite3-sys-wasi/bundled", "modern_sqlite"]
-bundled-sqlcipher = ["libsqlite3-sys-wasi/bundled-sqlcipher", "bundled"]
-bundled-sqlcipher-vendored-openssl = ["libsqlite3-sys-wasi/bundled-sqlcipher-vendored-openssl", "bundled-sqlcipher"]
-buildtime_bindgen = ["libsqlite3-sys-wasi/buildtime_bindgen"]
+trace = ["libsqlite3-sys/min_sqlite_version_3_6_23"]
+bundled = ["libsqlite3-sys/bundled", "modern_sqlite"]
+bundled-sqlcipher = ["libsqlite3-sys/bundled-sqlcipher", "bundled"]
+bundled-sqlcipher-vendored-openssl = ["libsqlite3-sys/bundled-sqlcipher-vendored-openssl", "bundled-sqlcipher"]
+buildtime_bindgen = ["libsqlite3-sys/buildtime_bindgen"]
 limits = []
 hooks = []
 i128_blob = []
-sqlcipher = ["libsqlite3-sys-wasi/sqlcipher"]
-unlock_notify = ["libsqlite3-sys-wasi/unlock_notify"]
+sqlcipher = ["libsqlite3-sys/sqlcipher"]
+unlock_notify = ["libsqlite3-sys/unlock_notify"]
 # xSavepoint, xRelease and xRollbackTo: 3.7.7 (2011-06-23)
-vtab = ["libsqlite3-sys-wasi/min_sqlite_version_3_7_7"]
+vtab = ["libsqlite3-sys/min_sqlite_version_3_7_7"]
 csvtab = ["csv", "vtab"]
 # pointer passing interfaces: 3.20.0
 array = ["vtab"]
 # session extension: 3.13.0
-session = ["libsqlite3-sys-wasi/session", "hooks"]
+session = ["libsqlite3-sys/session", "hooks"]
 # window functions: 3.25.0
 window = ["functions"]
 # 3.9.0
 series = ["vtab"]
 # check for invalid query.
 extra_check = []
-modern_sqlite = ["libsqlite3-sys-wasi/bundled_bindings"]
-in_gecko = ["modern_sqlite", "libsqlite3-sys-wasi/in_gecko"]
-bundled-windows = ["libsqlite3-sys-wasi/bundled-windows"]
+modern_sqlite = ["libsqlite3-sys/bundled_bindings"]
+in_gecko = ["modern_sqlite", "libsqlite3-sys/in_gecko"]
+bundled-windows = ["libsqlite3-sys/bundled-windows"]
 # Build bundled sqlite with -fsanitize=address
-with-asan = ["libsqlite3-sys-wasi/with-asan"]
+with-asan = ["libsqlite3-sys/with-asan"]
 column_decltype = []
-wasm32-wasi-vfs = ["libsqlite3-sys-wasi/wasm32-wasi-vfs"]
-winsqlite3 = ["libsqlite3-sys-wasi/winsqlite3"]
+wasm32-wasi-vfs = ["libsqlite3-sys/wasm32-wasi-vfs"]
+winsqlite3 = ["libsqlite3-sys/winsqlite3"]
 
 # Helper feature for enabling most non-build-related optional features
 # or dependencies (except `session`). This is useful for running tests / clippy
@@ -131,7 +131,7 @@ unicase = "2.6.0"
 # many benchmarks
 bencher = "0.1"
 
-[dependencies.libsqlite3-sys-wasi]
+[dependencies.libsqlite3-sys]
 path = "libsqlite3-sys"
 version = "0.23.0"
 

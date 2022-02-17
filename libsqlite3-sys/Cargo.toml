@@ -1,12 +1,11 @@
 [package]
-name = "libsqlite3-sys-wasi"
+name = "libsqlite3-sys"
 version = "0.23.2"
 authors = ["The rusqlite developers"]
 edition = "2018"
 repository = "https://github.com/rusqlite/rusqlite"
 description = "Native bindings to the libsqlite3 library"
 license = "MIT"
-links = "sqlite3"
 build = "build.rs"
 keywords = ["sqlite", "sqlcipher", "ffi"]
 categories = ["external-ffi-bindings"]
