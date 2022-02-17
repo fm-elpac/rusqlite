@@ -122,10 +122,11 @@ mod build_bundled {
             .flag("-DSQLITE_ENABLE_STAT2")
             .flag("-DSQLITE_ENABLE_STAT4")
             .flag("-DSQLITE_SOUNDEX")
-            .flag("-DSQLITE_THREADSAFE=1")
+            .flag("-DSQLITE_THREADSAFE=0")
             .flag("-DSQLITE_USE_URI")
             .flag("-DHAVE_USLEEP=1")
             .flag("-D_POSIX_THREAD_SAFE_FUNCTIONS") // cross compile with MinGW
+            .flag("-D_WASI_EMULATED_MMAN")
             .warnings(false);
 
         if cfg!(feature = "bundled-sqlcipher") {
@@ -242,7 +243,7 @@ mod build_bundled {
             cfg.flag("-DHAVE_LOCALTIME_R");
         }
         // Target wasm32-wasi can't compile the default VFS
-        if is_compiler("wasm32-wasi") {
+        if env::var("TARGET").as_deref() == Ok("wasm32-wasi") || is_compiler("wasm32-wasi") {
             cfg.flag("-DSQLITE_OS_OTHER")
                 // https://github.com/rust-lang/rust/issues/74393
                 .flag("-DLONGDOUBLE_TYPE=double");
