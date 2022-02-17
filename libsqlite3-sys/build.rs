@@ -122,11 +122,9 @@ mod build_bundled {
             .flag("-DSQLITE_ENABLE_STAT2")
             .flag("-DSQLITE_ENABLE_STAT4")
             .flag("-DSQLITE_SOUNDEX")
-            .flag("-DSQLITE_THREADSAFE=0")
             .flag("-DSQLITE_USE_URI")
             .flag("-DHAVE_USLEEP=1")
             .flag("-D_POSIX_THREAD_SAFE_FUNCTIONS") // cross compile with MinGW
-            .flag("-D_WASI_EMULATED_MMAN")
             .warnings(false);
 
         if cfg!(feature = "bundled-sqlcipher") {
@@ -246,10 +244,14 @@ mod build_bundled {
         if env::var("TARGET").as_deref() == Ok("wasm32-wasi") || is_compiler("wasm32-wasi") {
             cfg.flag("-DSQLITE_OS_OTHER")
                 // https://github.com/rust-lang/rust/issues/74393
-                .flag("-DLONGDOUBLE_TYPE=double");
+                .flag("-DLONGDOUBLE_TYPE=double")
+                .flag("-D_WASI_EMULATED_MMAN")
+                .flag("-DSQLITE_THREADSAFE=0");
             if cfg!(feature = "wasm32-wasi-vfs") {
                 cfg.file("sqlite3/wasm32-wasi-vfs.c");
             }
+        } else {
+            cfg.flag("-DSQLITE_THREADSAFE=1");
         }
         if cfg!(feature = "unlock_notify") {
             cfg.flag("-DSQLITE_ENABLE_UNLOCK_NOTIFY");
